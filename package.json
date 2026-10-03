@@ -1,0 +1,11 @@
+{
+  "name": "pizza-order-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Production-minded pizza ordering platform",
+  "scripts": {
+    "dev": "echo "Web and API dev scripts will be added during setup"",
+    "build": "echo "Build scripts will be added during setup"",
+    "test": "echo "Test scripts will be added during setup""
+  }
+}
