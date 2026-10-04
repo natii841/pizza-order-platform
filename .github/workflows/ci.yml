@@ -1,0 +1,33 @@
+name: Pizza App Frontend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  frontend-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm' # Change to 'pnpm' or 'yarn' if you use them
+
+    - name: Install Workspace Dependencies
+      run: npm install
+
+    - name: Verify Tailwind & Build React App
+      # Targets only your frontend build while you work on the UI
+      # Replace 'frontend' with the actual folder name inside your 'apps/' directory
+      run: npm run build --filter=frontend 
+
+    - name: Check Frontend TypeScript
+      # Ensures your React props and types are 100% correct as you code
+      run: npx tsc --project apps/frontend/tsconfig.json --noEmit --skipLibCheck
